@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.example.cinemaplus.MainActivity
 import com.example.cinemaplus.R
 import com.google.firebase.auth.FirebaseAuth
-
+import com.example.cinemaplus.showpage.MoviePage
 class Main {
     companion object {
         @Composable
@@ -92,6 +92,24 @@ class Main {
                         }
                     }
                     Spacer(modifier = Modifier.padding(10.dp))
+
+                    Button(
+                        onClick = {
+                            val intent = Intent(context, MoviePage::class.java)
+                            context.startActivity(intent)
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth(1f)
+                            .clip(RoundedCornerShape(10.dp))
+                            .height(40.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
+                    ) {
+                        Text(
+                            text = "Go to Movie Page",
+                            fontSize = MaterialTheme.typography.bodyLarge.fontSize,
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
+                    }
                 }
             }
         }

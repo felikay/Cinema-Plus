@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
@@ -23,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.cinemaplus.auth.Login
 import com.example.cinemaplus.home.Main
 import com.example.cinemaplus.ui.theme.CinemaPlusTheme
 import com.google.firebase.auth.FirebaseAuth
@@ -96,7 +94,7 @@ fun MyApp() {
                 location = userData.location
             )
 
-            else -> Login.LoginUI()
+            //else -> Login.LoginUI()
         }
     }
 }

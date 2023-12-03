@@ -7,11 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -24,6 +21,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cinemaplus.R
 import com.example.cinemaplus.location.LocationActivity
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Icon
+import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.cinemaplus.home.Main
 
 class MoviePage : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,10 +44,11 @@ class MoviePage : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoviePageContent(movie: Movie) {
-
     val context = LocalContext.current
+    var selectedShowtime by remember { mutableStateOf<String?>(null) }
 
     Box(
         modifier = Modifier
@@ -103,7 +105,6 @@ fun MoviePageContent(movie: Movie) {
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-
                 Text(
                     text = movie.description,
                     fontSize = 14.sp,
@@ -120,24 +121,38 @@ fun MoviePageContent(movie: Movie) {
                         .fillMaxWidth()
                         .padding(vertical = 16.dp)
                 ) {
-                    // Buttons for movie timings
-                    ShowtimeButton("Mon 17")
-                    ShowtimeButton("Tue 18")
-                    ShowtimeButton("Wed 19")
-                    ShowtimeButton("Thu 20")
+                    ShowtimeButton("Mon 17", selectedShowtime == "Mon 17") { selectedShowtime = "Mon 17" }
+                    ShowtimeButton("Tue 18", selectedShowtime == "Tue 18") { selectedShowtime = "Tue 18" }
+                    ShowtimeButton("Wed 19", selectedShowtime == "Wed 19") { selectedShowtime = "Wed 19" }
+                    ShowtimeButton("Thu 20", selectedShowtime == "Thu 20") { selectedShowtime = "Thu 20" }
                 }
             }
         }
 
         Button(
-            onClick = { /* TODO: Handle click */ },
+            onClick = { context.startActivity(Intent(context, LocationActivity::class.java)) },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 16.dp),
-            shape = MaterialTheme.shapes.large
+            shape = MaterialTheme.shapes.large,
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF133755))
         ) {
             Text(text = "Continue")
         }
+    }
+
+}
+
+@Composable
+fun ShowtimeButton(text: String, isSelected: Boolean, onClick: () -> Unit) {
+    val backgroundColor = if (isSelected) Color(0xFF133755) else Color.Gray
+    Button(
+        onClick = { onClick() },
+        modifier = Modifier.padding(horizontal = 8.dp),
+        shape = MaterialTheme.shapes.medium,
+        colors = ButtonDefaults.buttonColors(backgroundColor)
+    ) {
+        Text(text = text, color = if (isSelected) Color.White else Color.Black)
     }
 
     // Dummy Movie class to represent the movie data
@@ -149,56 +164,15 @@ fun MoviePageContent(movie: Movie) {
         val imageUrl: Int
     )
 
-    Button(
-        onClick = {
-            context.startActivity(Intent(context, LocationActivity::class.java))
-        },
-        modifier = Modifier
-            .padding(bottom = 16.dp),
-        shape = MaterialTheme.shapes.large
-    ) {
-        Text(text = "Continue")
-    }
-
-}
-
-@Composable
-fun ShowtimeButton(text: String) {
-    Button(
-        onClick = { /* TODO: Handle click */ },
-        modifier = Modifier.padding(horizontal = 8.dp),
-        shape = MaterialTheme.shapes.medium
-    ) {
-        Text(text = text)
-    }
-}
-
-@Composable
-fun BackButton(movie: Movie, onBack: () -> Unit) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        // Image with back button
-        Image(
-            painter = painterResource(id = movie.imageUrl),
-            contentDescription = movie.title,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxWidth()
-        )
-        IconButton(
-            onClick = { onBack() },
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(16.dp)
-                .size(48.dp)
-                .background(
-                    color = Color(0xFF333333).copy(alpha = 0.5f),
-                    shape = CircleShape // Circular shape
-                ),
+    @Composable
+    fun ShowtimeButton(text: String) {
+        Button(
+            onClick = { /* TODO: Handle click */ },
+            modifier = Modifier.padding(horizontal = 8.dp),
+            shape = MaterialTheme.shapes.medium,
+            colors = ButtonDefaults.buttonColors(Color(0xFF133755))
         ) {
-            Icon(
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = "Back",
-                tint = Color.White
-            )
+            Text(text = text)
         }
     }
 }
