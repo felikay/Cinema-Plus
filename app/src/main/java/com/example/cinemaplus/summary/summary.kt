@@ -53,7 +53,7 @@ fun SummaryScreen(onConfirmClicked: () -> Unit) {
         ) {
             Spacer(modifier = Modifier.height(32.dp))
             Image(
-                painter = painterResource(id = R.drawable.cinema_plus_logo),
+                painter = painterResource(id = R.drawable.barbie),
                 contentDescription = "Movie Poster",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -86,17 +86,19 @@ fun SummaryScreen(onConfirmClicked: () -> Unit) {
 fun TicketDetails() {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-            text = "Tickets: Kshs 1200",
+            text = "Tickets @: Kshs 1200",
             color = Color.White,
             fontSize = 18.sp,
             textAlign = TextAlign.Center
         )
+        Spacer(modifier = Modifier.height(2.dp))
         Text(
-            text = "Seats: G1, G2",
+            text = "Seats: Seat 1, Seat 2, Seat 3",
             color = Color.White,
             fontSize = 18.sp,
             textAlign = TextAlign.Center
         )
+        Spacer(modifier = Modifier.height(2.dp))
         Text(
             text = "Snacks: Kshs. 0",
             color = Color.White,
@@ -105,7 +107,7 @@ fun TicketDetails() {
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "TOTAL: Kshs. 1200",
+            text = "TOTAL: Kshs. 3600",
             color = Color.White,
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
@@ -126,6 +128,6 @@ fun ConfirmButton(onConfirmClicked: () -> Unit) {
         shape = RoundedCornerShape(50),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0B1F30))
     ) {
-        Text("Confirm Order Kshs 1200", color = Color.White, fontSize = 18.sp)
+        Text("Confirm Order Kshs 3600", color = Color.White, fontSize = 18.sp)
     }
 }

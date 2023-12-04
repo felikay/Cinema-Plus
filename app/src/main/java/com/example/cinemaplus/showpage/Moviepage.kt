@@ -36,7 +36,7 @@ class MoviePage : ComponentActivity() {
                 genre = "Comedy, Adventure, Romance",
                 duration = "195 min",
                 description = "The film stars Margot Robbie as the titular character and Ryan Gosling as Ken, and follows the pair on a journey of self-discovery following an existential crisis.",
-                imageUrl = R.drawable.cinema_plus_logo
+                imageUrl = R.drawable.fight
             )
 
             MoviePageContent(movie)

@@ -81,7 +81,7 @@ fun BookingScreen(onBackClicked: () -> Unit, onContinueClicked: () -> Unit) {
                 .fillMaxSize()
                 .background(Color(0xFF133755))
         ) {
-            MovieInfoSection(moviePoster = R.drawable.cinema_plus_logo, movieTitle = "Barbie", cinemaInfo = "Cinema Plus - CBD - 15:30 PM")
+            MovieInfoSection(moviePoster = R.drawable.barbie, movieTitle = "Barbie", cinemaInfo = "Cinema Plus - CBD - 15:30 PM")
             NumberOfSeatsSelector(selectedSeats.size) { number ->
                 if (number <= seats.count { it.status == SeatStatus.Available }) {
                     selectedSeats = seats.filter { it.status == SeatStatus.Available }.take(number)
