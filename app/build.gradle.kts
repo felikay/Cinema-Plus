@@ -56,6 +56,7 @@ dependencies {
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
     implementation("androidx.compose.ui:ui-tooling-preview-android:1.5.4")
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.5")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     val fragmentVersion = "1.6.2"
 
     implementation("androidx.core:core-ktx:1.12.0")
