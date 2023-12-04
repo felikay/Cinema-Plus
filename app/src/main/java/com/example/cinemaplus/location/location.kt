@@ -15,7 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Brush
-import com.example.cinemaplus.payment.Payment
+import com.example.cinemaplus.booking.BookingActivity
+import com.example.cinemaplus.booking.BookingScreen
+import com.example.cinemaplus.payment.PaymentActivity
 import com.example.cinemaplus.showpage.MoviePage
 
 val gradientColors = listOf(Color(0xFF133755), Color(0xFF1f2a44))
@@ -27,7 +29,7 @@ class LocationActivity : ComponentActivity() {
         setContent {
             ChooseTimeAndPlace(
                 onBack = { navigateToMoviePage() },
-                onContinue = { navigateToPayment() }
+                onContinue = { navigateToBooking() }
             )
         }
     }
@@ -37,8 +39,8 @@ class LocationActivity : ComponentActivity() {
         startActivity(intent)
     }
 
-    private fun navigateToPayment() {
-        val intent = Intent(this, Payment::class.java)
+    private fun navigateToBooking() {
+        val intent = Intent(this, BookingActivity::class.java)
         startActivity(intent)
     }
 }
@@ -140,7 +142,6 @@ fun TimeButton(time: String, isSelected: Boolean, onClick: () -> Unit) {
         shape = RoundedCornerShape(50),
         colors = ButtonDefaults.buttonColors(backgroundColor),
         modifier = Modifier
-            //.weight(1f)
     ) {
         Text(time, color = Color.White)
     }
